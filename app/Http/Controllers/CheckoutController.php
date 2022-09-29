@@ -44,7 +44,7 @@ class CheckoutController extends Controller
             }
         }else if($request ->method() == 'POST'){
 
-          //print_r($request->post());
+          print_r($request->post());die;
         
             $user_id = $request->session() ->get('frontendloginID');
             $items = Cart::name('shopping')->getItems();
@@ -58,7 +58,7 @@ class CheckoutController extends Controller
                     'country' =>'required',
                     'state' =>'required',
                     'pincode' =>'required',
-                    'mobile_no' =>'required',
+                    'mobile_no' =>'required|min:10',
                     
                 ]);
                
@@ -216,6 +216,48 @@ class CheckoutController extends Controller
             
                     <div class="sub_title mb-3 mt-4 text-center">All orders are processed in USD. While the content of your cart is currently displayed in , you will checkout using USD at the most current exchange rate.</div>
             </div>';
+    }
+
+
+
+    
+    public function getcheckotOrdersummery(){
+
+        $items = Cart::name('shopping');   
+
+    
+        $totalSave = 0;
+        $getItems = $items -> getItems();
+
+        $today=date("Y-m-d");
+        $discount    =DB::table('discounts')->where('start_date','<=',$today)
+                  ->where('end_date','>=',$today)->get();
+        //   print_r($discount->amount);die;
+       
+        $discountPrice = 0;
+        foreach ($discount as $sum){
+            $discountPrice+=$sum->amount;
+        }
+        // echo $discountPrice;
+        // die;
+
+
+
+        foreach($getItems as $key => $val){ 
+            $quantity = $items -> getDetails() -> get('items') -> get($key) -> get('quantity');            
+            $saveamount = $items -> getDetails() -> get('items') -> get($key) -> get('extra_info') -> get('saveamount');
+            $normaldiscount = $totalSave + $saveamount['saveamount']*$quantity;
+            $totalSave = $totalSave + $saveamount['saveamount']*$quantity + $discountPrice;
+
+            //normal discount
+           
+
+            $tolalamount =$items-> getDetails() -> get('total') - $discountPrice;
+            
+        }  
+        
+        return $tolalamount;
+
     }
 
     public function clearItems($withEvent = true){

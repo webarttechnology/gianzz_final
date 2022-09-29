@@ -144,6 +144,7 @@
         @endif
           <input type="button" value="+" id="add_" class="barti" onclick="add()">
         </div>
+        <p id="add_success" style="color:green;"></p>
         <a onclick="addtocartprodect()" class ="btn">
           Add to Cart <i class="bi bi-cart"></i>
         </a>
@@ -263,9 +264,10 @@
                   item : shopping
               },
               success: function(response) {
-              alert(response);
+              //alert(response);
           $("#add_success").html('Product added successfully.');
-          $('#courtcount').html(response);			  
+          $('#courtcount').html(response);	
+
         }
           });
   }

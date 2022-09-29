@@ -53,3 +53,4 @@ Route::get("/order-summery", [CartController::class, 'getOrdersummery']);
 
 Route::get("/checkout", [CheckoutController::class, 'checkout']);
 Route::post("/check-out", [CheckoutController::class, 'checkout']);
+Route::get('/order-summery-checkout', [CheckoutController::class, 'getcheckotOrdersummery']);

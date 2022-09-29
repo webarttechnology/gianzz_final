@@ -119,7 +119,7 @@
 							<div class="col-md-2">
 								<div class="image position-relative">
 									<img src="{{ asset( $item['extra_info']['image']['img']) }}" alt="">
-									<div class="quamtitybx bg-theme-red text-white ">{{ $item['quantatity'] }}</div>
+									<div class="quamtitybx bg-theme-red  ">{{ $item['quantatity'] }}</div>
 								</div>
 							</div>
 							<div class="col-md-8">
@@ -127,11 +127,16 @@
 								<p class="text-theme-grey"><small>{{ $item['option']['size']['label']}} ({{ $item['option']['color']['label']}})</small></p>
 							</div>
 							<div class="col-md-2">
-								<p class="bg-theme-red text-white px-1 py-1 rounded">${{ $item['price'] }}</p>
+								<p class="text-theme-grey">${{ $item['price'] }}</p>
 							</div>
 						</div>
 					</div>
 				@endforeach
+
+				<div class="d-flex justify-content-between py-3">
+                        <h5 class="text-black fs-5">Total Payable <span class="text-theme-grey fs-6"></span></h5>
+                        <h5 class="text-theme-red fs-5">$ <span id="total_payble">{{number_format(200, 2)}}</span></h5>
+                    </div>
 				
 			
 			<div  id="order">
@@ -161,6 +166,7 @@
                type:'GET',
                url:'/order-summery-checkout',
                success:function(data) {
+				alert(data);
 					$("#order").html(data);
 				  var	saveamt = $('#save_amt').val();
 				  var totalamt =$('#total_amt').val();

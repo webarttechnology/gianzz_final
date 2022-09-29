@@ -55,10 +55,11 @@
 					<div class="col-md-5 text-end">
 						<ul class="ps-0 mt-4">
 							<li><a href="#"><i class="bi bi-search"></i></a></li>
-							<li><a href="{{ url('wish-list') }}"><i class="bi bi-heart-fill"></i></a></li>
+							
 							@if(Session::get('frontendloginStatus') == true)
+							<li><a href="{{ url('wish-list') }}"><i class="bi bi-heart-fill"></i></a></li>
 							    <li><a href="{{ url('my-account') }}"><i class="bi bi-person-circle"></i></a></li>
-								<li><a href="{{ url('logout') }}"><i class="">Logout</i></a></li>
+								
 							@else
 								<li><a href="{{ url('login') }}"><i class="">Login</i></a></li>
 							@endif
