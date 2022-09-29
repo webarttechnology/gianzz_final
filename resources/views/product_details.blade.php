@@ -124,7 +124,7 @@
           <div class="radio_container">
             @foreach($rope as $item)
             <input type="radio" name="rope" id="one{{ $item->id}}"  {{$rope_chain->id == $item->id?"checked":" "}}  onclick="getprice({{ $item->id }})">
-            <label for="one{{ $item->id}}">{{$item->carat }}</label>
+            <label style="background: {{ $item -> gold_color}}" for="one{{ $item->id}}">{{$item->carat }}</label>
             @endforeach
             <input type="hidden" id="blog_id" value="{{ $productDetails->id }}">
             <input type="hidden" id="carat_q" value="{{ $productDetails->carat }}" >

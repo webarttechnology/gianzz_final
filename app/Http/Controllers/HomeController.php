@@ -29,8 +29,15 @@ class HomeController extends Controller
         if($request -> method() == "GET"){
             $slider  = Slide::get();
             $categories = Categary::limit(4) -> get();
+            
+            // Fetch product 
             $products = Blog::get()->random(8);
-            return view("home", ['slider' => $slider, 'sliderCount' => Slide::count(), 'categories' => $categories, 'products' => $products,'$active_menu'=>1]);
+
+            // End fetch product
+
+        
+
+            return view("home", ['slider' => $slider, 'sliderCount' => Slide::count(), 'categories' => $categories, 'products'=> $products, '$active_menu'=>1]);
         }
     }
 
@@ -126,7 +133,8 @@ class HomeController extends Controller
         }else if($request -> method() == 'GET' || $id != ''){
             //echo $request -> get('product');die;
             $productDetails = Blog::where('slug_name', $id) -> first();
-            $rope =Rope_chain::where('blog_id',$productDetails->id)->get();
+            $rope =Rope_chain::where('blog_id',$productDetails->id)-> orderBy('carat')->get();
+         
             $rope_chain =Rope_chain::where('blog_id',$productDetails->id)->first();
             $similarproduct =Blog::where('categary_id', $productDetails->categary_id)->limit(3) -> get();
             $productquantatity = 0;

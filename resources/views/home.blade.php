@@ -133,13 +133,17 @@
 			</div>
 		</div>
 		<div class="row mt-5">
+		
             @foreach($products as $val)	
+			@php 
+			$roopData = getroopDetails($val -> id ); 
+			@endphp
 			<div class="col-md-3">
-				<a href="{{ url('product/'.$val->slug_name) }}">
+				<a href="{{ url('product/'.$val['slug_name']) }}">
 					<div class="trnd_product">
 						<img src="{{ asset($val -> image) }}" />
 						<h3>{{ Str::limit($val -> tittle, 40) }}</h3>
-						<span>$ 400.00</span>
+						<span>$ {{ number_format($roopData[0]-> amount, 2) }}</span>
 						<!--<div class="cardHover">-->
 						<!--	<a href="#"><i class="bi bi-cart"></i></a>-->
 						<!--	<a href="#"><i class="bi bi-heart-fill"></i></a>-->

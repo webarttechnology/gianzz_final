@@ -483,10 +483,8 @@ font-weight: 600;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #cecece;
-    height: 50px;
     border-radius: 9999px;
-    box-shadow: inset 0.5px 0.5px 2px 0 rgba(0, 0, 0, 0.15);
+    flex-wrap: wrap;
 }
 
 .radio_container input[type="radio"] {
@@ -512,8 +510,9 @@ font-weight: 600;
 
 .radio_container input[type="radio"]:checked + label {
     background-color: #aa7000;
-    color: #f1f3f5;
+    color: #0c0c0c;
     font-weight: 900;
+    border: 1px solid #ccc;
     transition: 0.3s;
 }
 
@@ -719,7 +718,6 @@ img{
     margin: 0.3rem;
     border: 1px solid #ccc;
     width: 25%;
-    height: 100px;
 }
 .img-item:nth-child(1),
 .img-item:nth-child(2),
@@ -814,7 +812,7 @@ img{
     font-weight: 400;
 }
 .purchase-info{
-    margin: 1.5rem 0;
+  margin: 2rem 0 32px;
 }
 .purchase-info input,
 .purchase-info .btn{

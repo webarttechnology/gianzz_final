@@ -32,6 +32,9 @@
 		</div>
 		<div class="row mt-5">
             @foreach($products as $val)
+			@php 
+			$roopData = getroopDetails($val['product'] -> id ); 
+			@endphp
 			<div class="col-md-4">
 				<a href="{{ url('product/'.$val['product']->slug_name) }}">
 					<div class="product-card card">
@@ -39,9 +42,9 @@
 					      <img class='product-picture' src="{{ $val['product']-> image }}" />
 					    </div>
 					    <div class="card-details">
-					      <h3 class="product-name">{{ $val['product']-> tittle }}</h3>
+					      <h3 class="product-name">{{ Str::limit($val['product']-> tittle, 80) }}</h3>
 					      <div class="bottom-row">
-					        <p class="price"> ${{$val['product']-> is_variation == 0?number_format($val['product']-> p_amt,2):number_format($val['maxprice'],2) ."-".number_format($val['minprice'],2)  }}</p>
+					        <p class="price">${{ number_format($roopData[0]-> amount, 2) }}</p>
 					        <button class="add-cart"><i class="bi bi-cart-fill"></i></button>
 					      </div>
 					    </div>

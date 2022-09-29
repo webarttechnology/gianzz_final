@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="description">
-                          <span>{{ $item['title'] }}</span>
+                          <span>{{ Str::limit($item['title'], 40) }}</span>
                           <span>{{ $item['option']['size']['value'] }}</span>
                           <span>{{ $item['option']['color']['value'] }}</span>
                         </div>
